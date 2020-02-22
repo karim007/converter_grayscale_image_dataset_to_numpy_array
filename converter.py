@@ -25,7 +25,7 @@ def split_and_shuffle_training_test( data, label_new):
 def reshapping_dimension(data):
     return data.reshape((len(data),np.prod(data.shape[1:])))
 
-data_folder="data/asl_alphabet"
+data_folder="data/letters"
 
 data=[]
 labels=[]
@@ -33,10 +33,13 @@ labels=[]
 classes=len(os.listdir(data_folder))
 label_code = open("label_code.txt", "w+")
 
+print("Start transformation")
+
 for idx, d in enumerate(os.listdir(data_folder)):
     
     label_code.write("{} : {} ".format(d, idx))
     label_code.write("\n")
+    print("Processsing {}".format(d))
     for f in os.listdir("{}/{}".format(data_folder,d)):
         
         img = Image.open("{}/{}/{}".format(data_folder,d,f))
@@ -46,30 +49,36 @@ for idx, d in enumerate(os.listdir(data_folder)):
 
 label_code.close()
 
+print("End transformation")
+
+
+print("Reshaping suffle and split data")
+
+
 data=np.array(data)
 labels=np.array(labels)
 data=reshapping_dimension(data)
-
 labels_hot_encoded= hot_encoding(labels, classes)
-
-
 data, labels, data_test, labels_test = split_and_shuffle_training_test(data,labels_hot_encoded)
 
-print('labels shape:', labels.shape )
+
+output_folder="output"
+training_folder="training"
+test_folder="test"
+
+if not os.path.exists(output_folder):
+    os.makedirs("{}".format(output_folder))
+if not os.path.exists("{}/{}".format(output_folder, training_folder)):
+    os.makedirs("{}/{}".format(output_folder, training_folder))
+if not os.path.exists("{}/{}".format(output_folder, test_folder)):
+    os.makedirs("{}/{}".format(output_folder, test_folder))
+
+print("Save numpy arrays")
 np.save('output/training/label.npy', labels)
-
-print('data shape:', data.shape )
 np.save('output/training/data.npy', data)
-
-
-print('labels test shape:', labels_test.shape )
 np.save('output/test/label.npy', labels_test)
-
-print('data test shape:', data_test.shape )
 np.save('output/test/data.npy', data_test)
 
-
-
-
+print("End script")
 
 
