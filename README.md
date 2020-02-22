@@ -1,5 +1,5 @@
 # Converter
-this library converts grayscale images in numpy arrays for classification purposes.
+This library converts grayscale images in numpy arrays for classification purposes.
 
 # How it works
 - Install the requirements
