@@ -1,5 +1,5 @@
 # Converter
-This library convert grayscale images in numpy arrays for classification purpose.
+this library converts grayscale images in numpy arrays for classification purposes.
 
 # How it works
 - Install the requirements
@@ -12,6 +12,6 @@ pip install -r requirements
 ```python
 python converter.py
 ```
-- Under the output folder you will find the input data splitted into test and training purpose. Each folder contains two numpy array (datas and labels)
-- You can use the generated dataset with the following alorithme: https://github.com/karim007/logistic_regression
+-Under the output folder, you will find the input data split into test and training purpose. Each folder contains two numpy arrays (data and labels)
+- You can use the generated dataset with the following algorithm: https://github.com/karim007/logistic_regression
 
