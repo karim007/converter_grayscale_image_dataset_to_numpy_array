@@ -11,8 +11,9 @@ def hot_encoding(labels, digits):
     return label_new
 
 def split_and_shuffle_training_test( data, label_new):
-    m = data.shape[0] //2
-
+    # m = data.shape[0] //2
+    m = data.shape[0] -1000
+   
     data_train, data_test = data[:m].T, data[m:].T
     labels_train, labels_test = label_new[:,:m], label_new[:,m:]
 
@@ -25,7 +26,7 @@ def split_and_shuffle_training_test( data, label_new):
 def reshapping_dimension(data):
     return data.reshape((len(data),np.prod(data.shape[1:])))
 
-data_folder="data/letters"
+data_folder="data/persian_letters"
 
 data=[]
 labels=[]
@@ -52,13 +53,15 @@ label_code.close()
 print("End transformation")
 
 
-print("Reshaping suffle and split data")
-
-
+print("Convert data to numpy arrays")
 data=np.array(data)
 labels=np.array(labels)
+
+print("Reshaping data")
 data=reshapping_dimension(data)
 labels_hot_encoded= hot_encoding(labels, classes)
+
+print("Suffle and split data")
 data, labels, data_test, labels_test = split_and_shuffle_training_test(data,labels_hot_encoded)
 
 
