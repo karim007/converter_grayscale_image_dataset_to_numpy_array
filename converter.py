@@ -78,8 +78,6 @@ data_test=reshapping_dimension(data_test).T
 labels_hot_encoded= hot_encoding(labels, classes)
 labels_test_hot_encoded= hot_encoding(labels_test, classes)
 
-print("Suffle and split data")
-# data, labels, data_test, labels_test = split_and_shuffle_training_test(data,labels_hot_encoded)
 
 
 output_folder="output"
